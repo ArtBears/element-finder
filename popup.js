@@ -1,12 +1,13 @@
 'use strict';
 
-var el_list = document.getElement
+var el_list = document.getElementById('el_list');
 
 // recurssive algo that will walk dom and 
 //   retrieve all children.
 // Takes a callback function to perform 
 //   an action on each child
 function walkDOM(root, func){
+  var parent_node;
   var node = root;
 
   start: while(node){
@@ -26,8 +27,18 @@ function walkDOM(root, func){
         continue start;
       }
 
-      node node.parentNode;
+      node = node.parentNode;
     }
+  }
+}
+
+function master(node){
+  if(isDirectChildOfBody(node)){
+    el_list.appendChild(createListItem(
+                        generateName(node)));
+  }
+  else{
+
   }
 }
 
@@ -39,27 +50,11 @@ function isDirectChildOfBody(node){
   return false;
 }
 
-// pass in a text node to become the text insideof the li 
-function appendToView(text_node){
+// pass in a text node to become the text inside of the li 
+function createListItem(text_node){
   var new_item = document.createElement('li');
-
-  if(node_id){
-    var item_content = createTextNode('#' + node_id);
-  }
-  else{
-    var 
-    var item_content = createTextNode();  
-  }
-}
-
-function combineClasses(node){
-  var node_class = node.getAttribute('class');
-  if(node_class){
-    var class_array =  node_class.split(' ');
-    var combined_string = node_class.join('.');
-    return combined_string;
-  }
-  return null;
+  new_item.appendChild(text_node);
+  return new_item;
 }
 
 function generateName(node){
@@ -88,9 +83,30 @@ function generateName(node){
                                         + node_elem);
     return text_node;
   }
-
 }
 
+function combineClasses(node){
+  var node_class = node.getAttribute('class');
+  if(node_class){
+    var class_array =  node_class.split(' ');
+    var combined_string = node_class.join('.');
+    return combined_string;
+  }
+  return null;
+} /* combineClasses */ 
+
+function appendUList(node){
+  if(node.hasChildNodes() 
+      && node.childNodes <= 1 
+      && node.childNodes[0].nodeType == 3){
+    return;
+  }
+  else if(node.hasChildNodes()){
+    var new_list = document.createElement('ul');
+    node.appendChild(new_list);
+  }
+  else{}
+}
 
 // To load when page loads 
 document.addEventListener('DOMContentLoaded', listener);
