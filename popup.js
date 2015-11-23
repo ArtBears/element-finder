@@ -2,6 +2,33 @@
 
 var el_list = document.getElementById('el_list');
 
+/*
+  Perhaps I can set the last used element to a variable.
+  Then in the next iteration, I can check to see if
+  the last_element is the parent of the current 
+  element. If yes, then append the element to 
+  the parent. 
+
+  Perhaps I can just make it so that when you click
+  on each child of a current node. It walks the current
+  node to find children.
+
+  This can be implemented by using another call to walkDom 
+  but on the element that was just clicked. Using this
+  method, we can check if that element has children that
+  are not text nodes.
+    Yes: Create a dropown with the list of child nodes
+    No: Do Nothing. 
+  
+
+  Another function that should be implemented is the 
+  ability to highlight the element on the dom as the
+  element is moused over on the extension. 
+
+
+*/
+
+
 // recurssive algo that will walk dom and 
 //   retrieve all children.
 // Takes a callback function to perform 
@@ -109,4 +136,4 @@ function appendUList(node){
 }
 
 // To load when page loads 
-document.addEventListener('DOMContentLoaded', listener);
+document.addEventListener('DOMContentLoaded', walkDOM(document.body, master);
