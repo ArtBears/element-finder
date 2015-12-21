@@ -65,7 +65,7 @@ function master(node){
                         generateName(node)));
   }
   else{
-
+    
   }
 }
 
